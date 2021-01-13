@@ -58,9 +58,23 @@ class DisplayBeacon extends React.Component{
       return (
           <div>
               <Card className="cardStyles" style={cardStyles}>
-                
 
-                <div className="Buttons">
+              <div className="Buttonv1">
+                      
+              <Link to="/book">
+                  <button className="Add-Button">
+                        Show Book
+                  </button>
+              </Link> &nbsp;
+              
+              <Link to="/creates/beacon">
+                  <button className="Add-Button">
+                      Add Beacon
+                  </button>
+              </Link>
+          </div>
+                
+                {/*<div className="Buttons">
                       <Link to="/book">
                           <button className="Add-Button">
                               Show Book
@@ -74,7 +88,7 @@ class DisplayBeacon extends React.Component{
                               Add Beacon
                           </button>
                       </Link>
-                   </div>
+                 </div> */}
 
                    <div className="container">
                      <div className="panel panel-heading">
