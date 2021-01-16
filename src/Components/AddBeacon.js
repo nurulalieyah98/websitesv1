@@ -16,7 +16,7 @@ class AddBeacon extends React.Component{
             beaconId: '',
             major: '',
             minor: '',
-            name: ''
+            beaconName: ''
         }
     }
     onChange = (e) =>
@@ -26,21 +26,22 @@ class AddBeacon extends React.Component{
         state[e.target.major] = e.target.value;
         state[e.target.minor] = e.target.value;
         state[e.target.name] = e.target.value;
+        state[e.target.beaconName] = e.target.value;
         this.setState(state);
     }
     onSubmit = (e) =>
     {
             e.preventDefault();
-            const {beaconId,name,major,minor} = this.state;
+            const {beaconId,beaconName,major,minor} = this.state;
             this.ref.add({
                 beaconId,
-                name,
+                beaconName,
                 major,
                 minor
             }).then((docRef)=> {
                 this.setState({
                     beaconId:'',
-                    name:'',
+                    beaconName:'',
                     major:'',
                     minor:''
                 });
@@ -54,7 +55,7 @@ class AddBeacon extends React.Component{
     }
     render()
     {
-        const {beaconId,name,major,minor} = this.state;
+        const {beaconId,beaconName,major,minor} = this.state;
         const cardStyles =
         {
             width: '60rem',
@@ -85,12 +86,12 @@ class AddBeacon extends React.Component{
                    <div>
                        <div className="form-group"></div>
                         <label htmlFor="name">Beacon Id : </label>
-                        <input type="text" className="form-control" name="beaconId" value={beaconId} onChange={this.onChange} placeholder="Enter Beacon ID"></input>
+                        <input type="text" className="form-control" name="beaconId" value={beaconId} onChange={this.onChange} placeholder="Eg: b9407f30-f5f8-466e-aff9-25556b57fe6a "></input>
                     </div>
                     <div>
                        <div className="form-group"></div>
                         <label htmlFor="name">Name : </label>
-                        <input type="text" className="form-control" name="name" value={name} onChange={this.onChange} placeholder="Please Enter Name"></input>
+                        <input type="text" className="form-control" name="beaconName" value={beaconName} onChange={this.onChange} placeholder="Eg: Level 1"></input>
                     </div>
                     <div>
                        <div className="form-group"></div>

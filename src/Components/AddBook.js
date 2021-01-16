@@ -18,7 +18,7 @@ class AddBook extends React.Component{
             category: '',
             shelves: '',
             synopsis:'',
-            beaconId:'',
+            beaconName:'',
             url: '',
             image: [],
             check:0
@@ -31,7 +31,7 @@ class AddBook extends React.Component{
         state[e.target.shelves] = e.target.value;
         state[e.target.category] = e.target.value;
         state[e.target.author] = e.target.value;
-        state[e.target.beaconId] = e.target.value;
+        state[e.target.beaconName] = e.target.value;
         state[e.target.title] = e.target.value;
         this.setState(state);
     }
@@ -59,14 +59,14 @@ class AddBook extends React.Component{
         if(this.state.check === 1)
         {
             e.preventDefault();
-            const {title,author,synopsis,category,shelves,beaconId} = this.state;
+            const {title,author,synopsis,category,shelves,beaconName} = this.state;
             this.ref.add({
                 title,
                 author,
                 synopsis,
                 category,
                 shelves,
-                beaconId,
+                beaconName,
                 url: this.state.url
             }).then((docRef)=> {
                 this.setState({
@@ -75,7 +75,7 @@ class AddBook extends React.Component{
                     synopsis:'',
                     category:'',
                     shelves:'',
-                    beaconId:'',
+                    beaconName:'',
                     url:''
                 });
                 alert("Book is successfully added")
@@ -93,7 +93,7 @@ class AddBook extends React.Component{
     }
     render()
     {
-        const {title,author,synopsis,category,shelves,beaconId} = this.state;
+        const {title,author,synopsis,category,shelves,beaconName} = this.state;
         const cardStyles =
         {
             width: '60rem',
@@ -139,13 +139,13 @@ class AddBook extends React.Component{
                     </div>
                     <div>
                        <div className="form-group"></div>
-                        <label htmlFor="name">Beacon ID : </label>
-                        <input type="text" className="form-control" name="beaconId" value={beaconId} onChange={this.onChange} placeholder="Please Enter Beacon Id"></input>
+                        <label htmlFor="name">Beacon Name : </label>
+                        <input type="text" className="form-control" name="beaconName" value={beaconName} onChange={this.onChange} placeholder="Eg: Level 1"></input>
                     </div>
                     <div>
                        <div className="form-group"></div>
                         <label htmlFor="name">Shelves : </label>
-                        <input type="text" className="form-control" name="shelves" value={shelves} onChange={this.onChange} placeholder="Please Enter Shelves"></input>
+                        <input type="text" className="form-control" name="shelves" value={shelves} onChange={this.onChange} placeholder="Eg: Level 1, Rack 1, Stack 1"></input>
                     </div>
                     <div>
                        <div className="form-group"></div>
@@ -155,7 +155,7 @@ class AddBook extends React.Component{
                    </div>
 
                     <div className ="upload-btn-wrapper">
-                        <button className="file-btn">Choose a file</button>
+                        <button className="file-btn">Upload Book Image</button>
                         <input type = "file" name="myfile" multiple onChange={this.handleChange}></input>
                     </div>
 
@@ -164,7 +164,7 @@ class AddBook extends React.Component{
                     </div>
 
                     <div className="Buttons">
-                        <button className="Submit-Button" onClick={this.handleUpload}>Upload Image First</button>
+                        <button className="Submit-Button" onClick={this.handleUpload}>Upload Book Image</button>
                         <button className="Submit-Button" onClick={this.onSubmit}>Save All</button>
                     </div>
 

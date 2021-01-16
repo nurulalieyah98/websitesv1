@@ -23,14 +23,14 @@ class DisplayBeacon extends React.Component{
     {
       const beacons = [];
       querySnapshot.forEach((doc) => {
-        const {beaconId, major, minor, name} = doc.data();
+        const {beaconId, major, minor, beaconName} = doc.data();
         beacons.push({
           key: doc.id,
           doc,
           beaconId,
           major,
           minor,
-          name
+          beaconName
         });
       });
       this.setState({
@@ -81,7 +81,6 @@ class DisplayBeacon extends React.Component{
                           </button>
                       </Link>
                    </div>
-
                 <div className="Buttons">
                       <Link to="/creates/beacon">
                           <button className="Add-Button">
@@ -110,7 +109,7 @@ class DisplayBeacon extends React.Component{
                            beacon =>
                            <tr>
                              <td><Link to = {`/shows/beacon/${beacon.key}`}>{beacon.beaconId}</Link></td>
-                             <td>{beacon.name}</td>
+                             <td>{beacon.beaconName}</td>
                              <td>{beacon.major}</td>
                              <td>{beacon.minor}</td>
                            </tr> 

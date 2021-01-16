@@ -93,7 +93,7 @@ class ShowBeacon extends React.Component{
                                 <dd>{this.state.beacon.beaconId}</dd>
                                 
                                 <dt>Name:</dt>
-                                <dd>{this.state.beacon.name}</dd>
+                                <dd>{this.state.beacon.beaconName}</dd>
 
                                 <dt>Major:</dt>
                                 <dd>{this.state.beacon.major}</dd>

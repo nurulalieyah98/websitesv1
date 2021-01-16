@@ -14,7 +14,7 @@ class EditBeacon extends React.Component{
         this.state = {
             key:'',
             beaconId:'',
-            name:'',
+            beaconName:'',
             major:'',
             minor:''
         }
@@ -29,7 +29,7 @@ class EditBeacon extends React.Component{
                 this.setState({
                     key: doc.id,
                     beaconId: document.beaconId,
-                    name: document.name,
+                    beaconName: document.beaconName,
                     major: document.major,
                     minor: document.minor
                 });
@@ -43,6 +43,7 @@ class EditBeacon extends React.Component{
     {
         const state = this.state;
         state[e.target.name] = e.target.value;
+        state[e.target.beaconName] = e.target.value;
         state[e.target.major] = e.target.value;
         state[e.target.minor] = e.target.value;
         this.setState({document : state});
@@ -51,18 +52,18 @@ class EditBeacon extends React.Component{
     onSubmit = (e) =>
     {
         e.preventDefault();
-        const {beaconId,name,major,minor} = this.state;
+        const {beaconId,beaconName,major,minor} = this.state;
         const updateRef = firebase.firestore().collection('beacon').doc(this.state.key);
         updateRef.set({
             beaconId,
-            name,
+            beaconName,
             major,
             minor,
         }).then((docRef)=> {
             this.setState({
                 key:'',
                 beaconId:'',
-                name:'',
+                beaconName:'',
                 major:'',
                 minor:'',
             });
@@ -112,12 +113,12 @@ class EditBeacon extends React.Component{
                                 <div>
                                 <div className="form-group"></div>
                                     <label htmlFor="name">Beacon ID : </label>
-                                    <input type="text" className="form-control" name="beaconId" value={this.state.beaconId} onChange={this.onChange} placeholder="Enter Beacon ID"></input>
+                                    <input type="text" className="form-control" name="beaconId" value={this.state.beaconId} onChange={this.onChange} placeholder="Eg: b9407f30-f5f8-466e-aff9-25556b57fe6a"></input>
                                 </div>
                                 <div>
                                 <div className="form-group"></div>
                                     <label htmlFor="name">Name : </label>
-                                    <input type="text" className="form-control" name="name" value={this.state.name} onChange={this.onChange} placeholder="Enter Name"></input>
+                                    <input type="text" className="form-control" name="beaconName" value={this.state.beaconName} onChange={this.onChange} placeholder="Eg: Level 1"></input>
                                 </div>
                                 <div>
                                 <div className="form-group"></div>

@@ -15,10 +15,16 @@ class App extends React.Component{
           books : []
         };
     }
-    handleLogout = () => 
-    {
-        firebase.auth().signOut();
-    };
+    logout(){
+      firebase.auth().signOut().then(() =>{
+      this.setState({
+       user:null
+      })
+      this.props.history.push("/");
+      }).catch(function(error) {
+      // An error happened.
+      });
+     }
     componentDidMount()
     {
       this.unsubscribe = this.ref.onSnapshot(this.onCollectionUpdate);
@@ -27,7 +33,7 @@ class App extends React.Component{
     {
       const books = [];
       querySnapshot.forEach((doc) => {
-        const {title, author, category, url,shelves, synopsis,beaconId} = doc.data();
+        const {title, author, category, url,shelves, synopsis,beaconName} = doc.data();
         books.push({
           key: doc.id,
           doc,
@@ -37,7 +43,7 @@ class App extends React.Component{
           url,
           shelves,
           synopsis,
-          beaconId,
+          beaconName,
         });
       });
       this.setState({
@@ -72,8 +78,30 @@ class App extends React.Component{
                       </Link>
                    </div> */}
                 <Card className="cardStyles" style={cardStyles}>
+                <div className="Buttonv1">
+                      
+                      <Link to="/beacon">
+                          <button className="Add-Button">
+                              Show Beacon
+                          </button>
+                      </Link> &nbsp;
+                      
+                      <Link to="/create">
+                          <button className="Add-Button">
+                              Add Books
+                          </button>
+                      </Link> &nbsp;
 
-                <div className="Buttons">
+                      <Link to="/">
+                          <button className="buttonlogout" onClick={this.logout}>
+                              Logout
+                          </button>
+                      </Link>
+
+                           
+                        </div>
+
+                {/* <div className="Buttons">
                       <Link to="/beacon">
                           <button className="Add-Button">
                               Show Beacon
@@ -95,7 +123,7 @@ class App extends React.Component{
                               Logout
                           </button>
                       </Link>
-                   </div>
+                   </div> */}
 
                    <div className="container">
                      <div className="panel panel-heading">
@@ -110,7 +138,7 @@ class App extends React.Component{
                            <th>Author</th>
                            <th>Category</th>
                            <th>Shelves</th>
-                           <th>Beacon ID</th>
+                           <th>Beacon Name</th>
                            <th>Synopsis</th>
                            <th>Image</th>
                          </tr>
@@ -123,7 +151,7 @@ class App extends React.Component{
                              <td>{book.author}</td>
                              <td>{book.category}</td>
                              <td>{book.shelves}</td>
-                             <td>{book.beaconId}</td>
+                             <td>{book.beaconName}</td>
                              <td>{book.synopsis}</td>
                              <td><img src = {book.url} width="100px" height="100px" alt=""></img></td>
                            </tr> 

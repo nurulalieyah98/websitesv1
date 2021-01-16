@@ -103,8 +103,8 @@ class Show extends React.Component{
                                 <dt>Shelves:</dt>
                                 <dd>{this.state.book.shelves}</dd>
 
-                                <dt>Beacon ID:</dt>
-                                <dd>{this.state.book.beaconId}</dd>
+                                <dt>Beacon Name:</dt>
+                                <dd>{this.state.book.beaconName}</dd>
 
                                 <dt>Synopsis:</dt>
                                 <dd>{this.state.book.synopsis}</dd>

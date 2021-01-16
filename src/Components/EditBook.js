@@ -18,7 +18,7 @@ class EditBook extends React.Component{
             synopsis:'',
             category:'',
             shelves:'',
-            beaconId:'',
+            beaconName:'',
             url:'',
             image: null
         }
@@ -37,7 +37,7 @@ class EditBook extends React.Component{
                     synopsis: document.synopsis,
                     category: document.category,
                     shelves: document.shelves,
-                    beaconId: document.beaconId,
+                    beaconName: document.beaconName,
                     url: document.url
                 });
             }
@@ -81,7 +81,7 @@ class EditBook extends React.Component{
         state[e.target.shelves] = e.target.value;
         state[e.target.category] = e.target.value;
         state[e.target.author] = e.target.value;
-        state[e.target.beaconId] = e.target.value;
+        state[e.target.beaconName] = e.target.value;
         state[e.target.title] = e.target.value;
         this.setState({document : state});
     }
@@ -89,7 +89,7 @@ class EditBook extends React.Component{
     onSubmit = (e) =>
     {
         e.preventDefault();
-        const {title,author,synopsis,category,shelves,beaconId,url} = this.state;
+        const {title,author,synopsis,category,shelves,beaconName,url} = this.state;
         const updateRef = firebase.firestore().collection('books').doc(this.state.key);
         updateRef.set({
             title,
@@ -97,7 +97,7 @@ class EditBook extends React.Component{
             synopsis,
             category,
             shelves,
-            beaconId,
+            beaconName,
             url
         }).then((docRef)=> {
             this.setState({
@@ -107,7 +107,7 @@ class EditBook extends React.Component{
                 synopsis:'',
                 category:'',
                 shelves:'',
-                beaconId:'',
+                beaconName:'',
                 url:''
             });
             alert("Book is successfully edited")
@@ -153,12 +153,12 @@ class EditBook extends React.Component{
                     </div>
 
                     <div className ="upload-btn-wrapper">
-                        <button className="file-btn">Choose a file</button>
+                        <button className="file-btn">Choose book image</button>
                         <input type = "file" name="myfile" multiple onChange={this.handleChange}></input>
                     </div>
 
                     <div className="Buttons">
-                        <button className="Submit-Button" onClick={this.handleUpload}>Upload Image First</button>
+                        <button className="Submit-Button" onClick={this.handleUpload}>Upload Book Image</button>
                     </div>
 
                     <div className="container">
@@ -183,13 +183,13 @@ class EditBook extends React.Component{
                                 </div>
                                 <div>
                                 <div className="form-group"></div>
-                                    <label htmlFor="name">Beacon ID : </label>
-                                    <input type="text" className="form-control" name="beaconId" value={this.state.beaconId} onChange={this.onChange} placeholder="Please Enter Beacon Id"></input>
+                                    <label htmlFor="name">Beacon Name : </label>
+                                    <input type="text" className="form-control" name="beaconName" value={this.state.beaconName} onChange={this.onChange} placeholder="Eg: Level 1"></input>
                                 </div>
                                 <div>
                                 <div className="form-group"></div>
                                     <label htmlFor="name">Shelves : </label>
-                                    <input type="text" className="form-control" name="shelves" value={this.state.shelves} onChange={this.onChange} placeholder="Please Enter Shelves"></input>
+                                    <input type="text" className="form-control" name="shelves" value={this.state.shelves} onChange={this.onChange} placeholder="Eg: Level 1, Rack 1, Stack 1"></input>
                                 </div>
                                 <div>
                                 <div className="form-group"></div>
