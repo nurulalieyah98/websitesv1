@@ -19,6 +19,7 @@ class AddBook extends React.Component{
             shelves: '',
             synopsis:'',
             beaconName:'',
+            quantity: '',
             url: '',
             image: [],
             check:0
@@ -33,6 +34,7 @@ class AddBook extends React.Component{
         state[e.target.author] = e.target.value;
         state[e.target.beaconName] = e.target.value;
         state[e.target.title] = e.target.value;
+        state[e.target.quantity] = e.target.value;
         this.setState(state);
     }
     handleChange = (e) =>
@@ -59,7 +61,7 @@ class AddBook extends React.Component{
         if(this.state.check === 1)
         {
             e.preventDefault();
-            const {title,author,synopsis,category,shelves,beaconName} = this.state;
+            const {title,author,synopsis,category,shelves,beaconName,quantity} = this.state;
             this.ref.add({
                 title,
                 author,
@@ -67,6 +69,7 @@ class AddBook extends React.Component{
                 category,
                 shelves,
                 beaconName,
+                quantity: parseInt(this.state.quantity),
                 url: this.state.url
             }).then((docRef)=> {
                 this.setState({
@@ -76,6 +79,7 @@ class AddBook extends React.Component{
                     category:'',
                     shelves:'',
                     beaconName:'',
+                    quantity: parseInt(this.state.quantity),
                     url:''
                 });
                 alert("Book is successfully added")
@@ -93,7 +97,7 @@ class AddBook extends React.Component{
     }
     render()
     {
-        const {title,author,synopsis,category,shelves,beaconName} = this.state;
+        const {title,author,synopsis,category,shelves,beaconName,quantity} = this.state;
         const cardStyles =
         {
             width: '60rem',
@@ -136,6 +140,11 @@ class AddBook extends React.Component{
                        <div className="form-group"></div>
                         <label htmlFor="name">Category : </label>
                         <input type="text" className="form-control" name="category" value={category} onChange={this.onChange} placeholder="Please Enter Category"></input>
+                    </div>
+                    <div>
+                       <div className="form-group"></div>
+                        <label htmlFor="name">Quantity Book : </label>
+                        <input type="text" className="form-control" name="quantity" value={quantity} onChange={this.onChange} placeholder="Please Enter Quantity Book"></input>
                     </div>
                     <div>
                        <div className="form-group"></div>
