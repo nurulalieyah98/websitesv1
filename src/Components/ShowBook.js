@@ -100,9 +100,6 @@ class Show extends React.Component{
                                 <dt>Category:</dt>
                                 <dd>{this.state.book.category}</dd>
 
-                                <dt>Quantity:</dt>
-                                <dd>{this.state.book.quantity}</dd>
-
                                 <dt>Shelves:</dt>
                                 <dd>{this.state.book.shelves}</dd>
 

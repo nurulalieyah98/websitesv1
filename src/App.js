@@ -33,7 +33,7 @@ class App extends React.Component{
     {
       const books = [];
       querySnapshot.forEach((doc) => {
-        const {title, author, category, url,shelves, synopsis,beaconName,quantity} = doc.data();
+        const {title, author, category, url,shelves, synopsis,beaconName} = doc.data();
         books.push({
           key: doc.id,
           doc,
@@ -44,7 +44,6 @@ class App extends React.Component{
           shelves,
           synopsis,
           beaconName,
-          quantity,
         });
       });
       this.setState({
@@ -138,7 +137,6 @@ class App extends React.Component{
                            <th>Title</th>
                            <th>Author</th>
                            <th>Category</th>
-                           <th>Quantity</th>
                            <th>Shelves</th>
                            <th>Beacon Name</th>
                            <th>Synopsis</th>
@@ -152,7 +150,6 @@ class App extends React.Component{
                              <td><Link to = {`/show/${book.key}`}>{book.title}</Link></td>
                              <td>{book.author}</td>
                              <td>{book.category}</td>
-                             <td>{book.quantity}</td>
                              <td>{book.shelves}</td>
                              <td>{book.beaconName}</td>
                              <td>{book.synopsis}</td>
